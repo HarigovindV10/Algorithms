@@ -22,7 +22,7 @@ class DijkstraShortestPathAlgorithm:
             if vertex_index != source:
                 dist.append(math.inf)
             all_nodes[str(vertex_index)] = vertex_index
-        return all_nodes 
+        return all_nodes
 
     def compute_minimum_distance(self, source):
         visited = set()
