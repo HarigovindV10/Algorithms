@@ -1,25 +1,30 @@
 import math
 
 
-class dijkstra:
+class DijkstraShortestPathAlgorithm:
 
     graph = [[]]
 
     def __init__(self, graph):
         self.graph = graph
 
+    def get_all_nodes(self):
+        all_nodes = {}
+        for vertex in self.graph:
+    
+            vertex_index = self.graph.index(vertex)
+            if vertex_index != source:
+                dist.append(math.inf)
+            all_nodes[str(vertex_index)] = vertex_index
+        return all_nodes
+        
+
     def compute_minimum_distance(self, source):
         visited = set()
-        all_nodes = {}
         dist = []
         dist.append(0)
 
-        for vertex in self.graph:
-
-            v = self.graph.index(vertex)
-            if v != source:
-                dist.append(math.inf)
-            all_nodes[str(v)] = v
+        all_nodes = self.get_all_nodes()
 
         while len(all_nodes) > 0:
 
@@ -30,22 +35,22 @@ class dijkstra:
                 min_list.append(distances)
 
             min_value = min(min_list)
-            shortest_distance_index = 0
+            shortest_dist_index = 0
 
             for indexes, distances in enumerate(dist):
                 if distances == min_value and indexes not in visited:
-                    shortest_distance_index = indexes
+                    shortest_dist_index = indexes
 
-            vertex = self.graph[shortest_distance_index]
-            all_nodes.pop(str(shortest_distance_index))
-            visited.add(shortest_distance_index)
+            vertex = self.graph[shortest_dist_index]
+            all_nodes.pop(str(shortest_dist_index))
+            visited.add(shortest_dist_index)
 
-            for index, node in enumerate(vertex):
+            for index, _ in enumerate(vertex):
                 if str(index) not in all_nodes:
                     continue
-                computed_distance = dist[shortest_distance_index] + self.graph[shortest_distance_index][index]
-                if(dist[shortest_distance_index] < computed_distance < dist[index]):
-                    dist[index] = computed_distance
+                computed_dist = dist[shortest_dist_index] + self.graph[shortest_dist_index][index]
+                if dist[shortest_dist_index] < computed_dist < dist[index]:
+                    dist[index] = computed_dist
 
         return dist
 
@@ -62,7 +67,7 @@ def main():
              [8, 11, 0, 0, 0, 0, 1, 0, 7],
              [0, 0, 2, 0, 0, 0, 6, 7, 0]]
 
-    obj = dijkstra(graph)
+    obj = DijkstraShortestPathAlgorithm(graph)
 
     dist = obj.compute_minimum_distance(0)
 
