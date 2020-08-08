@@ -1,56 +1,52 @@
 import math
 
 
-class Dijkstra:
+class dijkstra:
 
-    Graph = [[]]
+    graph = [[]]
 
-    def __init__(self, Graph):
-        self.Graph = Graph
+    def __init__(self, graph):
+        self.graph = graph
 
-    def ComputeMinimumDistance(self, source):
-        S = set()
-        visited = [False for _ in range(len(self.Graph))]
-        Q = {}
+    def compute_minimum_distance(self, source):
+        visited = set()
+        all_nodes = {}
         dist = []
         dist.append(0)
 
-        for vertex in self.Graph:
+        for vertex in self.graph:
 
-            v = self.Graph.index(vertex)
+            v = self.graph.index(vertex)
             if v != source:
                 dist.append(math.inf)
-            Q[str(v)] = v
+            all_nodes[str(v)] = v
 
-        while(len(Q) > 0):
+        while len(all_nodes) > 0:
 
-            minList = []
-            for x in range(0, len(dist)):
-                if(x in S):
+            min_list = []
+            for index, distances in enumerate(dist):
+                if index in visited:
                     continue
-                minList.append(dist[x])
+                min_list.append(distances)
 
-            minValue = min(minList)
-            i = 0
+            min_value = min(min_list)
+            shortest_distance_index = 0
 
-            for y in range(0, len(dist)):
-                if dist[y] == minValue and y not in S:
-                    i = y
+            for indexes, distances in enumerate(dist):
+                if distances == min_value and indexes not in visited:
+                    shortest_distance_index = indexes
 
-            #i = dist.index(min(minList))
-            v = self.Graph[i]
-            Q.pop(str(i))
-            S.add(i)
+            vertex = self.graph[shortest_distance_index]
+            all_nodes.pop(str(shortest_distance_index))
+            visited.add(shortest_distance_index)
 
-            for u in range(0, len(v)):
-                if str(u) not in Q:
+            for index, node in enumerate(vertex):
+                if str(index) not in all_nodes:
                     continue
-                alt = dist[i] + self.Graph[i][u]
-                if(alt < dist[u] and alt > dist[i]):
-                    dist[u] = alt
+                computed_distance = dist[shortest_distance_index] + self.graph[shortest_distance_index][index]
+                if(dist[shortest_distance_index] < computed_distance < dist[index]):
+                    dist[index] = computed_distance
 
-        print(Q)
-        print(S)
         return dist
 
 
@@ -66,19 +62,9 @@ def main():
              [8, 11, 0, 0, 0, 0, 1, 0, 7],
              [0, 0, 2, 0, 0, 0, 6, 7, 0]]
 
-    graphBrilliant = [[0, 3, 0, 0, 7, 0, 5, 0, 0],
-                      [3, 0, 7, 0, 1, 0, 0, 0, 0],
-                      [0, 7, 0, 1, 2, 2, 0, 0, 0],
-                      [0, 0, 1, 0, 0, 3, 0, 0, 5],
-                      [7, 1, 2, 0, 0, 1, 3, 3, 0],
-                      [0, 0, 2, 3, 1, 0, 0, 3, 2],
-                      [5, 0, 0, 0, 3, 0, 0, 2, 0],
-                      [0, 0, 0, 0, 3, 3, 2, 0, 4],
-                      [0, 0, 0, 5, 0, 2, 0, 4, 0]]
+    obj = dijkstra(graph)
 
-    obj = Dijkstra(graph)
-
-    dist = obj.ComputeMinimumDistance(0)
+    dist = obj.compute_minimum_distance(0)
 
     print(dist)
 
