@@ -1,2 +1,3 @@
 # Algorithms
-A repo of all major alogrithms
+
+A repo for all major algorithms
