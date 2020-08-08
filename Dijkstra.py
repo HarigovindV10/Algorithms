@@ -2,29 +2,34 @@ import math
 
 
 class DijkstraShortestPathAlgorithm:
+    """
+        Dijkstra's shortest path algorithm
 
+        Implementation of Dijkstra's shortest path algorithm to find the shortest distance
+
+        Attributes:
+            graph (list(list)) : adjacency matrix of the graph
+    """
     graph = [[]]
 
     def __init__(self, graph):
         self.graph = graph
 
-    def get_all_nodes(self):
+    def get_all_nodes(self, source, dist):
         all_nodes = {}
         for vertex in self.graph:
-    
             vertex_index = self.graph.index(vertex)
             if vertex_index != source:
                 dist.append(math.inf)
             all_nodes[str(vertex_index)] = vertex_index
-        return all_nodes
-        
+        return all_nodes 
 
     def compute_minimum_distance(self, source):
         visited = set()
         dist = []
         dist.append(0)
 
-        all_nodes = self.get_all_nodes()
+        all_nodes = self.get_all_nodes(source, dist)
 
         while len(all_nodes) > 0:
 
