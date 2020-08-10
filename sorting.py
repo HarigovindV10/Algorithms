@@ -10,6 +10,12 @@ class sorting:
         
         if(algorithm == "bubble"):
             array = self.bubble_sort()
+        elif(algorithm == "insertion"):
+            array = self.insertion_sort()
+        elif(algorithm == "selection"):
+            array = self.selection_sort()
+        elif(algorithm == "merge"):
+            array = self.merge_sort()
 
         return array
 
@@ -22,6 +28,15 @@ class sorting:
                     array[j], array[j + 1] = array[j + 1], array[j]
         
         return array
+
+    def insertion_sort(self):
+        pass
+
+    def merge_sort(self):
+        pass
+
+    def selection_sort(self):
+        pass
 
 
 array = [2, 3, 1, 7, 0, 9, 8, 10]
