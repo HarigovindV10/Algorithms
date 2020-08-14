@@ -5,9 +5,9 @@ class sorting:
     def __init__(self, array):
         self.array = array
 
-    def sort(self, algorithm = "bubble"):
+    def sort(self, algorithm="bubble"):
         array = []
-        
+
         if(algorithm == "bubble"):
             array = self.bubble_sort()
         elif(algorithm == "insertion"):
@@ -26,7 +26,7 @@ class sorting:
             for j in range(0, len(array) - 1 - i):
                 if (array[j] > array[j + 1]):
                     array[j], array[j + 1] = array[j + 1], array[j]
-        
+
         return array
 
     def insertion_sort(self):
