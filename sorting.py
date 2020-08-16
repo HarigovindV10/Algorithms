@@ -36,13 +36,25 @@ class sorting:
         pass
 
     def selection_sort(self):
-        pass
+		array = self.array
 
+		for i in range(0, len(array)):
+			min_index = i
+			temp_index = 0
+			for j in range(i + 1, len(array)):
+				temp_index = j
+        		if (array[j] < array[min_index]):
+        			min_index = j
+
+			if(temp_index < len(array)):
+				array[min_index], array[temp_index] = array[temp_index], array[min_index]
+
+		return array
 
 array = [2, 3, 1, 7, 0, 9, 8, 10]
 
 obj = sorting(array)
 
-sorted_array = obj.sort("bubble")
+sorted_array = obj.sort("selection")
 
 print(sorted_array)
