@@ -16,6 +16,8 @@ class sorting:
 			array = self.selection_sort()
 		elif(algorithm == "merge"):
 			array = self.merge_sort()
+		elif(algorithm == "quick"):
+			array = self.quick_sort()
 
 		return array
 
@@ -33,6 +35,9 @@ class sorting:
 		pass
 
 	def merge_sort(self):
+		pass
+
+	def quick_sort(self):
 		pass
 
 	def selection_sort(self):
