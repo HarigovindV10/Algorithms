@@ -45,14 +45,12 @@ class sorting:
 
 		for i in range(0, len(array)):
 			min_index = i
-			temp_index = 0
 			for j in range(i + 1, len(array)):
 				
 				if (array[j] < array[min_index]):
 					min_index = j
 
-			if(temp_index < len(array)):
-				array[min_index], array[i] = array[i], array[min_index]
+			array[min_index], array[i] = array[i], array[min_index]
 
 		return array
 
